@@ -1,0 +1,70 @@
+.container {
+  position: relative;
+  padding: 10px 20px;
+  width: 78vw;
+  left: 20vw;
+}
+
+//Tab Navigation
+.tab-nav {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  li {
+    list-style: none;
+    cursor: pointer;
+    padding: 8px 20px 8px 0;
+    text-align: center;
+    background-color: transparent;
+    color: $inactive-tab;
+
+    &.active-color {
+      color: $primary-color;
+      border-bottom: 3px solid $primary-color;
+      font-weight: 500;
+    }
+  }
+}
+
+//Tables
+.table_container {
+  margin-top: 10px;
+  width: 60%;
+
+  table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    width: 100%;
+
+    .table_header {
+      background-color: $primary-color;
+      color: $white;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .clickable {
+      cursor: pointer;
+
+      &:hover {
+        background-color: $inactive-tab;
+        padding: 10px 0;
+      }
+    }
+
+    td,
+    th {
+      text-align: left;
+      padding: 8px;
+    }
+
+    td {
+      font-size: 14px;
+      background-color: $td-bg;
+      color: $primary-color;
+      font-weight: 500;
+    }
+  }
+}
