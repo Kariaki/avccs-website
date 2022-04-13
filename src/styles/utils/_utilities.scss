@@ -1,3 +1,4 @@
+//Container
 .container {
   position: relative;
   padding: 10px 20px;
@@ -32,39 +33,57 @@
 .table_container {
   margin-top: 10px;
   width: 60%;
+  font-size: 14px;
+}
 
-  table {
-    border-collapse: separate;
-    border-spacing: 0 15px;
-    width: 100%;
+table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+  width: 100%;
 
-    .table_header {
-      background-color: $primary-color;
-      color: $white;
-      font-size: 14px;
-      font-weight: 700;
-    }
+  .table_header {
+    background-color: $primary-color;
+    color: $white;
+    font-weight: 700;
+  }
 
-    .clickable {
-      cursor: pointer;
+  .clickable {
+    cursor: pointer;
 
-      &:hover {
-        background-color: $inactive-tab;
-        padding: 10px 0;
-      }
-    }
-
-    td,
-    th {
-      text-align: left;
-      padding: 8px;
-    }
-
-    td {
-      font-size: 14px;
-      background-color: $td-bg;
-      color: $primary-color;
-      font-weight: 500;
+    &:hover {
+      background-color: $inactive-tab;
+      padding: 10px 0;
     }
   }
+
+  td,
+  th {
+    text-align: left;
+    padding: 8px;
+  }
+
+  td {
+    cursor: pointer;
+    background-color: $td-bg;
+    color: $primary-color;
+    font-weight: 500;
+  }
+}
+
+//Loan Progress Table
+.loan_progress-table-container {
+  margin-top: 10px;
+  width: 95%;
+  font-size: 12px;
+}
+
+.tab_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
 }
