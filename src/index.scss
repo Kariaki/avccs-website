@@ -8,9 +8,11 @@
 
 //Components
 @import "./styles/components/header";
-
-//Tables
-@import "./styles/tables/sixColumns";
+@import "./styles/components/profileHeader";
+@import "./styles/components/loanApplication";
+@import "./styles/components/currentSavings";
+@import "./styles/components/loanCard";
+@import "./styles/components/loanProgress";
 
 //Pages
 @import "./styles/pages/dashboard";
