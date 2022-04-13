@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<PrivateRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/ledger" element={<Ledger />} />
         </Route>
       </Routes>
