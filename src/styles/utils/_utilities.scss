@@ -77,6 +77,13 @@ table {
   font-size: 12px;
 }
 
+//Payment History Table
+.payment_history-table-container {
+  margin-top: 10px;
+  width: 100%;
+  font-size: 12px;
+}
+
 .tab_container {
   display: flex;
   justify-content: space-between;
@@ -86,4 +93,12 @@ table {
   width: 50%;
   display: flex;
   flex-direction: column;
+}
+
+.sub_tab-container {
+  width: 30%;
+}
+
+.avatar {
+  margin: 10px auto 40px auto;
 }
