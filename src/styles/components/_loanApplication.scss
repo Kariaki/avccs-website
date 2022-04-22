@@ -1,0 +1,35 @@
+.loan_application {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    outline: none;
+    background-color: $gray;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+  }
+
+  button {
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    background-color: $primary-color;
+    color: $white;
+    height: 40px;
+    border-radius: 40px;
+    text-align: center;
+    transition: background-color 0.5s ease-in;
+
+    &:hover {
+      background-color: $primary-color-hover;
+    }
+  }
+}
