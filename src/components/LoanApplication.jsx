@@ -8,7 +8,7 @@ import { addDoc, collection, updateDoc } from "firebase/firestore";
 
 const LoanApplication = () => {
 
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const { user } = useAuth();
@@ -16,7 +16,7 @@ const LoanApplication = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const data = {
-      date: moment(new Date()).format('YYYY-MM-DD'),
+      date: moment(new Date()).format('DD-MM-YYY'),
       amount,
       category,
       description,
