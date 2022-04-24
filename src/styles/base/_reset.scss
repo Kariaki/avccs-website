@@ -11,6 +11,27 @@ body {
   background-color: $bg-color;
 }
 
+.mobile {
+  display: block;
+  color: $primary-color;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 40vh;
+
+  @include lg {
+    display: none;
+  }
+}
+
+.App {
+  display: none;
+
+  @include lg {
+    display: block;
+  }
+}
+
 a {
   text-decoration: none;
   cursor: pointer;
