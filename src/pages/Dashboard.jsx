@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Outstanding from '../tabs/Outstanding';
 import Pending from '../tabs/Pending';
 import ProfileHeader from '../components/ProfileHeader';
+import { useAuth } from '../context/authContext';
+
+import { db } from '../firebase-config';
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 
 const Dashboard = () => {
 
   const [activeTab, setActiveTab] = useState("tab1");
+  const [loans, setLoans] = useState([]);
+  const [pendingLoans, setPendingLoans] = useState([]);
+  const [approvedLoans, setApprovedLoans] = useState([]);
+  const [paidLoans, setPaidLoans] = useState([]);
+  const { user } = useAuth();
 
    const handleTab1 = () => {
     setActiveTab("tab1");
@@ -15,6 +24,25 @@ const Dashboard = () => {
   const handleTab2 = () => {
     setActiveTab("tab2");
   };
+
+
+  useEffect(() => {
+    const data = query(
+      collection(db, "loans"),
+      where("userId", "==", user.uid)
+    );
+    onSnapshot(data, (querySnapshot) => {
+      setLoans(querySnapshot.docs.map((doc) => doc.data()));
+    });
+  }, [user.uid]);
+
+
+  useEffect(() => {
+    setPendingLoans(loans.filter(loan => loan.state === 'PENDING'));
+    setApprovedLoans(loans.filter(loan => loan.state === 'APPROVED'));
+    setPaidLoans(loans.filter(loan => loan.state === 'PAID'));
+  }, [loans]);
+
 
   return (
     <React.Fragment>
@@ -26,7 +54,7 @@ const Dashboard = () => {
           <li className={activeTab === "tab2" ? "active active-color" : ""} onClick={handleTab2}>Pending</li>
         </ul>
         <div className="underline"></div>
-          {activeTab === "tab1" ? <Outstanding /> :  <Pending/>}
+          {activeTab === "tab1" ? <Outstanding approvedLoans={approvedLoans} paidLoans={paidLoans}/> :  <Pending pendingLoans={pendingLoans}/>}
       </div>
     </React.Fragment>
   )
