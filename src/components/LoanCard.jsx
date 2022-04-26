@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'timeago.js';
+import LinearProgressBar from './LinearProgressBar';
 
 const LoanCard = ({ loan, setLoanId, setPaid, setTotal }) => {
 
@@ -11,6 +13,8 @@ const LoanCard = ({ loan, setLoanId, setPaid, setTotal }) => {
     setPaid(loan.payment);
   }
 
+  const percentage = ((loan.payment / loan.amount) * 100).toFixed(0);
+
   return (
     <div className='loan_card' onClick={() => handleClick(loan)}>
       <div className="loan_card-details">
@@ -20,8 +24,11 @@ const LoanCard = ({ loan, setLoanId, setPaid, setTotal }) => {
       </div>
 
       <div className="loan_card-progress">
-        <p>2days ago</p>
-        <div></div>
+        <p>{format(`${loan.date}`)}</p>
+        <div>
+          <LinearProgressBar value={percentage} />
+        </div>
+        
         <button onClick={() => navigate('/ledger')}>View ledger</button>
       </div>
     </div>
