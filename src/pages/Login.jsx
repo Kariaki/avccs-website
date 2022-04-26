@@ -16,7 +16,12 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(staffId, password);
+    const firstName = staffId.split(" ")[0];
+    const lastName = staffId.split(" ")[1];
+    const name = `${firstName}.${lastName}@avccs.com`.toLowerCase();
+
+    await login(name, password);
+
     navigate(from, { replace: true });
 
   }
@@ -27,13 +32,13 @@ const Login = () => {
       <div className="login_form-container">
 
         <div className="login_form-container-logo">
-          <h2>Avss</h2>
+          <h2>Avccs</h2>
         </div>
 
       <h3>Welcome</h3>
       
       <form onSubmit={handleSubmit}>
-        <input type="email" value={staffId} onChange={e => setStaffId(e.target.value)} placeholder="Staff Id"/>
+        <input type="text" value={staffId} onChange={e => setStaffId(e.target.value)} placeholder="Staff Id"/>
         <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password"/>
         <button>Login</button>
       </form>

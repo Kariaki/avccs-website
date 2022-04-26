@@ -50,7 +50,6 @@ const Ledger = () => {
       <Header />
       <div className='container ledger'>
         <ProfileHeader />
-  
         <ul className="tab-nav">
           <li className={activeTab === "tab1" ? "active active-color" : ""} onClick={handleTab1}>Loans</li>
           <li className={activeTab === "tab2" ? "active active-color" : ""} onClick={handleTab2}>Savings</li>
