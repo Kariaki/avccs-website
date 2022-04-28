@@ -14,7 +14,7 @@ const LoanProgressTable = ({col1, col2, col3, data}) => {
         {data?.map(row => (
           <tbody key={row.id}>
             <tr>
-              <td>₦ {row.amount.toLocaleString()}</td>
+              <td>₦{row.amount.toLocaleString()}</td>
               <td>{`${row.description}`.charAt(0).toUpperCase() + `${row.description}`.slice(1)}</td>
               <td>{row.date}</td>
             </tr>

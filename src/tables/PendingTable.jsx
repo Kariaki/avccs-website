@@ -16,7 +16,7 @@ const PendingTable = ({col1, col2, col3, col4, data}) => {
         {data?.map(row => (
           <tbody key={row.id}>
             <tr>
-              <td>₦ {row.amount.toLocaleString()}</td>
+              <td>₦{row.amount.toLocaleString()}</td>
               <td>{row.category}</td>
               <td>{row.percentage}%</td>
               <td>{row.date}</td>

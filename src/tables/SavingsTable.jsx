@@ -17,7 +17,7 @@ const SavingsTable = ({col1, col2, col3, col4, data}) => {
         {data?.map(row => (
           <tbody key={row.id}>
             <tr>
-              <td>₦ {row.amount.toLocaleString()}</td>
+              <td>₦{row.amount.toLocaleString()}</td>
               <td>{`${row.description}`.charAt(0).toUpperCase() + `${row.description}`.slice(1)}</td>
               <td>{row.amount >= 0 ? <MdArrowDropUp size={18} color='green'/> : <MdArrowDropDown size={18} color='red'/>}</td>
               <td>{row.date}</td>

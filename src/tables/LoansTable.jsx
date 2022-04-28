@@ -18,7 +18,7 @@ const LoansTable = ({col1, col2, col3, col4, col5, data, setClickId}) => {
           <tbody key={row.id}>
             <tr onClick={() => setClickId(row.id)} >
               <td>{row.category}</td>
-              <td>₦ {row?.amount.toLocaleString()}</td>
+              <td>₦{row?.amount.toLocaleString()}</td>
               <td>{row.description}</td>
               <td>{row.percentage}%</td>
               <td>{row.date}</td>
