@@ -6,7 +6,7 @@ import { useAuth } from '../context/authContext';
 
 const ProfileHeader = () => {
   const [isClicked, setIsClicked] = useState(false);
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   const handleClick = async () => {
     await logout();
@@ -22,7 +22,7 @@ const ProfileHeader = () => {
       <div className="profile" onClick={handleClick}>
         {!isClicked &&
           <React.Fragment>
-            <Avatar color="rgba(0, 48, 73, 1)" name="John Doe" size="40" round={true} />
+            <Avatar color="rgba(0, 48, 73, 1)" name={user?.displayName ? `${user?.displayName?.split(' ')[0]} ${user?.displayName?.split(' ')[1]}`: "John Doe"} size="40" round={true} />
             <p>Logout</p>
           </React.Fragment>
         }

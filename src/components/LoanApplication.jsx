@@ -16,8 +16,8 @@ const LoanApplication = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const data = {
-      date: moment(new Date()).format('DD-MM-YYYY'),
-      amount,
+      date: moment(new Date()).format('MM/DD/YYYY'),
+      amount: Number(amount),
       category: category.toUpperCase(),
       description,
       payment: 0,
@@ -41,14 +41,14 @@ const LoanApplication = () => {
 
   return (
     <form onSubmit={handleSubmit} className='loan_application'>
-        <Avatar color="rgba(0, 48, 73, 1)" name="John Doe" size="60" round={true} className="avatar"/>
+        <Avatar color="rgba(0, 48, 73, 1)" name={user?.displayName ? `${user?.displayName?.split(' ')[0]} ${user?.displayName?.split(' ')[1]}`: "John Doe"} size="60" round={true} className="avatar"/>
       <input type="number" value={amount} onChange={e => setAmount(e.target.value)} placeholder="Amount" required/>
       <select value={category} onChange={e => setCategory(e.target.value)} placeholder="Category">
-        <option value="soft">Soft</option>
-        <option value="compassionate">Compassionate</option>
-        <option value="normal">Normal</option>
-        <option value="household">Household</option>
-        <option value="special">Special</option>
+        <option value="soft">Soft 5%</option>
+        <option value="compassionate">Compassionate 5%</option>
+        <option value="normal">Normal 5%</option>
+        <option value="household">Household 10%</option>
+        <option value="special">Special 20%</option>
       </select>
       <input type="text" value={description} onChange={e => setDescription(e.target.value)} placeholder="Description" required/>
       <button>Apply</button>
