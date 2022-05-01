@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AuthError from '../components/AuthError';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
 
@@ -7,7 +8,7 @@ const Login = () => {
 
   const [staffId, setStaffId] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useAuth();
+  const { login, error, loading } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,6 +32,8 @@ const Login = () => {
 
       <div className="login_form-container">
 
+        {error && <AuthError component={error} />}
+
         <div className="login_form-container-logo">
           <h2>Avccs</h2>
         </div>
@@ -40,7 +43,7 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <input type="text" value={staffId} onChange={e => setStaffId(e.target.value)} placeholder="Staff Id"/>
         <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password"/>
-        <button>Login</button>
+        <button>{loading ? 'Loading...' : 'Login'}</button>
       </form>
       </div>
       <div className="login_bottom-corner login_addon"></div>

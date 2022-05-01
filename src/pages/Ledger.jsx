@@ -8,12 +8,16 @@ import { useAuth } from '../context/authContext';
 
 import { db } from '../firebase-config';
 import { collection, query, where, onSnapshot } from "firebase/firestore";
+import AuthError from '../components/AuthError';
+import Spinner from '../components/Spinner';
 
 const Ledger = () => {
 
   const [activeTab, setActiveTab] = useState("tab1");
   const [loans, setLoans] = useState([]);
   const [savings, setSavings] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const { user } = useAuth();
 
    const handleTab1 = () => {
@@ -25,24 +29,40 @@ const Ledger = () => {
   };
 
   useEffect(() => {
-    const data = query(
+    setLoading(true);
+    try {
+      const data = query(
       collection(db, "loans"),
       where("userId", "==", user.uid)
-    );
-    onSnapshot(data, (querySnapshot) => {
-      setLoans(querySnapshot.docs.map((doc) => doc.data()));
-    });
+      );
+      onSnapshot(data, (querySnapshot) => {
+        setLoans(querySnapshot.docs.map((doc) => doc.data()));
+      });
+      setLoading(false)
+    } catch (err) {
+      setError(err.message);
+      setLoading(false)
+    }
+    
   }, [user.uid]);
 
 
   useEffect(() => {
-    const data = query(
-      collection(db, "savings"),
-      where("userId", "==", user.uid)
-    );
-    onSnapshot(data, (querySnapshot) => {
-      setSavings(querySnapshot.docs.map((doc) => doc.data()));
-    });
+    setLoading(true);
+    try {
+      const data = query(
+        collection(db, "savings"),
+        where("userId", "==", user.uid)
+      );
+      onSnapshot(data, (querySnapshot) => {
+        setSavings(querySnapshot.docs.map((doc) => doc.data()));
+      });
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false)
+    }
+    
   }, [user.uid]);
 
   return (
@@ -55,6 +75,8 @@ const Ledger = () => {
           <li className={activeTab === "tab2" ? "active active-color" : ""} onClick={handleTab2}>Savings</li>
         </ul>
         <div className="underline"></div>
+          {loading && <Spinner />}
+          {error && <AuthError component={error}/>}
           {activeTab === "tab1" ? <Loans loans={loans}/> :  <Savings savings={savings}/>}     
       </div>
     </React.Fragment>
