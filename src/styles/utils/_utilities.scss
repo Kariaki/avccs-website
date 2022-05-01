@@ -64,6 +64,7 @@ table {
 
   td {
     cursor: pointer;
+    font-size: 12px;
     background-color: $td-bg;
     color: $primary-color;
     font-weight: 500;
@@ -101,4 +102,18 @@ table {
 
 .avatar {
   margin: 10px auto 40px auto;
+}
+
+.error_container {
+  padding: 5px 10px;
+  width: 90%;
+  margin: 0 auto 30px auto;
+  border: 1px solid red;
+  color: red;
+
+  p {
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+  }
 }
