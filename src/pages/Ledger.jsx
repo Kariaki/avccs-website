@@ -9,14 +9,12 @@ import { useAuth } from '../context/authContext';
 import { db } from '../firebase-config';
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import AuthError from '../components/AuthError';
-import Spinner from '../components/Spinner';
 
 const Ledger = () => {
 
   const [activeTab, setActiveTab] = useState("tab1");
   const [loans, setLoans] = useState([]);
   const [savings, setSavings] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { user } = useAuth();
 
@@ -29,7 +27,6 @@ const Ledger = () => {
   };
 
   useEffect(() => {
-    setLoading(true);
     try {
       const data = query(
       collection(db, "loans"),
@@ -38,17 +35,14 @@ const Ledger = () => {
       onSnapshot(data, (querySnapshot) => {
         setLoans(querySnapshot.docs.map((doc) => doc.data()));
       });
-      setLoading(false)
     } catch (err) {
       setError(err.message);
-      setLoading(false)
     }
     
   }, [user.uid]);
 
 
   useEffect(() => {
-    setLoading(true);
     try {
       const data = query(
         collection(db, "savings"),
@@ -57,10 +51,8 @@ const Ledger = () => {
       onSnapshot(data, (querySnapshot) => {
         setSavings(querySnapshot.docs.map((doc) => doc.data()));
       });
-      setLoading(false);
     } catch (err) {
       setError(err.message);
-      setLoading(false)
     }
     
   }, [user.uid]);
@@ -75,7 +67,6 @@ const Ledger = () => {
           <li className={activeTab === "tab2" ? "active active-color" : ""} onClick={handleTab2}>Savings</li>
         </ul>
         <div className="underline"></div>
-          {loading && <Spinner />}
           {error && <AuthError component={error}/>}
           {activeTab === "tab1" ? <Loans loans={loans}/> :  <Savings savings={savings}/>}     
       </div>
