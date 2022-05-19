@@ -24,7 +24,9 @@ const Savings = ({ savings }) => {
   
   return (
     <div className='tab_container'>
-      <SavingsTable col1="Amount" col2="Description" col3="Action" col4="Date" data={savings}/>
+      {savings.length < 1 ? <p>You currently do not have any savings</p> : 
+        <SavingsTable col1="Amount" col2="Description" col3="Action" col4="Date" data={savings}/>
+      }
       <CurrentSavings currentSavings={users[0]}/>
     </div>
   )

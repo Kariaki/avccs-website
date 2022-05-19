@@ -19,11 +19,13 @@ const Outstanding = ({approvedLoans, paidLoans }) => {
 
   return (
     <div className='tab_container'>
-      <div className='flex'>
+      {approvedLoans.length < 1 ? <p>You currently do not have any outstanding loan</p> : 
+      (<div className='flex'>
       {approvedLoans?.map(loan => ( 
         <LoanCard loan={loan} key={loan.id} setLoanId={setLoanId} setPaid={setPaid} setTotal={setTotal} loanProgress={loanProgress} paid={paid} total={total}/> 
       ))}
-      </div>
+      </div>)
+      }
       {loanId && <LoanProgress key={paidLoans.id} loanProgress={loanProgress} paid={paid} total={total}/>}
     </div>
   )

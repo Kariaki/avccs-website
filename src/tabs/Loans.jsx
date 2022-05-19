@@ -27,7 +27,9 @@ const Loans = ({ loans }) => {
 
   return (
     <div className='tab_container'>
+      {loans.length < 1 ? <p>You currently do not have any loan</p> : 
       <LoansTable col1="Category" col2="Amount" col3="Description" col4="Percentage" col5="Date" data={loans} setClickId={setClickId}/>
+      }
       <div className="sub_tab-container">
         {clickId ? <PaymentsHistory data={clickedLoan} loans={loans} percentage={percentage}/> : <LoanApplication /> }
          {/* <button onClick={() => handleDelete(clickId)}>delete</button> */}
