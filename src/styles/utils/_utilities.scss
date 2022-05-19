@@ -88,6 +88,10 @@ table {
 .tab_container {
   display: flex;
   justify-content: space-between;
+
+  p {
+    margin: 20px 0;
+  }
 }
 
 .flex {
